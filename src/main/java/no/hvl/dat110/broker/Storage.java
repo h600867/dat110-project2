@@ -8,7 +8,7 @@ import no.hvl.dat110.common.TODO;
 import no.hvl.dat110.common.Logger;
 import no.hvl.dat110.messagetransport.Connection;
 
-public class Storage {
+public class  Storage {
 
 	// data structure for managing subscriptions
 	// maps from a topic to set of subscribed users
@@ -55,16 +55,16 @@ public class Storage {
 		// TODO: add corresponding client session to the storage
 		// See ClientSession class
 		
-		throw new UnsupportedOperationException(TODO.method());
+		clients.put(user, new ClientSession(user, connection));
 		
 	}
 
 	public void removeClientSession(String user) {
 
-		// TODO: disconnet the client (user) 
+		// TODO: disconnect the client (user)
 		// and remove client session for user from the storage
 		
-		throw new UnsupportedOperationException(TODO.method());
+		clients.remove(user);
 		
 	}
 
@@ -72,7 +72,7 @@ public class Storage {
 
 		// TODO: create topic in the storage
 
-		throw new UnsupportedOperationException(TODO.method());
+		subscriptions.put(topic, ConcurrentHashMap.newKeySet());
 	
 	}
 
@@ -80,7 +80,7 @@ public class Storage {
 
 		// TODO: delete topic from the storage
 
-		throw new UnsupportedOperationException(TODO.method());
+		subscriptions.remove(topic);
 		
 	}
 
@@ -88,14 +88,13 @@ public class Storage {
 
 		// TODO: add the user as subscriber to the topic
 		
-		throw new UnsupportedOperationException(TODO.method());
-		
+		subscriptions.get(topic).add(user);
 	}
 
 	public void removeSubscriber(String user, String topic) {
 
 		// TODO: remove the user as subscriber to the topic
 
-		throw new UnsupportedOperationException(TODO.method());
+		subscriptions.get(topic).remove(user);
 	}
 }
